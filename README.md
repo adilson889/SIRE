@@ -36,8 +36,8 @@ CLIQUE AQUI PARA ASSISTIR AO VÍDEO DE DEMONSTRAÇÃO DO SIRE
 -
 ​Localização Cambial: O MVP foi Configurado nativamente para a moeda nacional angolana(KZ).
 
-​## Instalação e Atualização
-
+​Instalação e Atualização
+-
 ​Para garantir a integridade do software, descarregue sempre a versão oficial através do repositório:
 ​Aceda à secção Releases.
 ​Descarregue o ficheiro SIRE_v1.0.0.apk.
@@ -45,8 +45,8 @@ CLIQUE AQUI PARA ASSISTIR AO VÍDEO DE DEMONSTRAÇÃO DO SIRE
 
 ​Certifique-se de que a opção "Instalar de Fontes Desconhecidas" está ativa.
 
-​##  Propriedade Intelectual e Termos
-
+​Propriedade Intelectual e Termos
+-
 ​O SIRE é um software proprietário. Este repositório serve exclusivamente como canal oficial de distribuição do executável e documentação de utilização.
 ```
 ​Copyright: © 2026 Adilson Rafael. Todos os direitos reservados.
