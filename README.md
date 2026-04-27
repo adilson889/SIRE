@@ -27,7 +27,7 @@ CLIQUE AQUI PARA ASSISTIR AO VÍDEO DE DEMONSTRAÇÃO DO SIRE
 ​Interface: Design baseado no sistema de cores de alto contraste para facilitar a leitura em ambientes externos.
 ​
 # Funcionalidades Chave
--
+
 ​Monitorização de Saldo: Cálculo instantâneo de saldo atual, diário, semanal e mensal.
 -
 ​Histórico de Transações: Registo de entradas com timestamp preciso.
