@@ -2,7 +2,7 @@
 Sistema de Registros 
 
 
-O SIRE é uma aplicação profissional desenvolvida para a gestão rigorosa de fluxos financeiros inicialmente em Kwanzas (KZ). Projetado com foco em performance e precisão, o sistema oferece uma interface intuitiva para o controlo de capital, ideal para utilizadores que necessitam de uma visão clara e imediata da sua saúde financeira.
+O SIRE é uma aplicação desenvolvida para a gestão de fluxos financeiros inicialmente em Kwanzas (KZ). Projetado com foco em performance e precisão, o sistema oferece uma interface intuitiva para o controlo de capital, ideal para utilizadores que necessitam de uma visão clara e imediata da sua saúde financeira.
 ​
 # Demonstração Visual
 ​Interface Principal e Relatórios
