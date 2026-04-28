@@ -7,7 +7,7 @@ O **SIRE** é uma aplicação robusta desenvolvida para a gestão de fluxos fina
 
 ---
 
-## 📱 Demonstração Visual
+##  Demonstração Visual
 
 **Interface Principal e Relatórios**
 <p align="center">
@@ -20,7 +20,7 @@ O **SIRE** é uma aplicação robusta desenvolvida para a gestão de fluxos fina
 
 ---
 
-## 🛠 Especificações Técnicas (MVP)
+##. Especificações Técnicas (MVP)
 
 A arquitetura do SIRE utiliza padrões modernos de engenharia de software para garantir fluidez mesmo em dispositivos com hardware limitado:
 
@@ -31,7 +31,7 @@ A arquitetura do SIRE utiliza padrões modernos de engenharia de software para g
 
 ---
 
-## 📊 Funcionalidades Chave
+##  Funcionalidades Chave
 
 * **Monitorização de Saldo:** Cálculo instantâneo de saldo atual, diário, semanal e mensal.
 * **Histórico de Transações:** Registo de entradas com *timestamp* preciso.
@@ -40,7 +40,7 @@ A arquitetura do SIRE utiliza padrões modernos de engenharia de software para g
 
 ---
 
-## 📥 Instalação e Atualização
+##  Instalação e Atualização
 
 Para garantir a integridade do software, descarregue sempre a versão oficial através deste repositório:
 
@@ -51,7 +51,7 @@ Para garantir a integridade do software, descarregue sempre a versão oficial at
 
 ---
 
-## ⚖️ Propriedade Intelectual e Termos
+##  Propriedade Intelectual e Termos
 
 O SIRE é um **software proprietário**. Este repositório serve exclusivamente como canal oficial de distribuição do executável e documentação de utilização.
 
@@ -62,5 +62,5 @@ O SIRE é um **software proprietário**. Este repositório serve exclusivamente 
 
 ---
 
-### 📩 Contacto e Suporte
+###  Contacto e Suporte
 Para questões técnicas ou feedback sobre o MVP, utilize as **Issues** deste repositório ou contacte o desenvolvedor através do perfil oficial.
