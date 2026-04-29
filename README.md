@@ -69,4 +69,4 @@
 >​Grupo de Suporte: Aceder à **[comunidade no whatsapp](https://github.com/TEU_USUARIO/SIRE/releases)**.
 -
 >​Issues: Reporte bugs ou sugestões diretamente no GitHub.
->​ -Perfil Oficial: Contacto direto com o **[Desenvolvedor](https://github.com/TEU_USUARIO/SIRE/releases)**, para questões confidenciais.
+->Perfil Oficial: Contacto direto com o **[Desenvolvedor](https://github.com/TEU_USUARIO/SIRE/releases)**, para questões confidenciais.
