@@ -63,4 +63,11 @@
 ---
 
 ### Contacto e Suporte
-> Para questões técnicas ou feedback sobre o MVP, utilize as **Issues** deste repositório ou contacte o desenvolvedor através do perfil oficial.
+
+>​Para questões técnicas, suporte imediato ou feedback sobre o MVP, utilize os canais oficiais:
+-
+>​Grupo de Suporte: Aceder à Comunidade no WhatsApp
+-
+>​Issues: Reporte bugs ou sugestões diretamente no GitHub.
+-
+>​Perfil Oficial: Contacto direto com o desenvolvedor para questões administrativas.
