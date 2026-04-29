@@ -25,10 +25,6 @@
 >   <img src="screenshots/IMG_20260429_151001.jpg" width="30%" />
 >   <img src="screenshots/IMG_20260429_151036.jpg" width="30%" />
 > </p>
-> 
-> [!TIP]
-> **[CLIQUE AQUI PARA ASSISTIR AO VÍDEO DE DEMONSTRAÇÃO DO SIRE](LINK_DO_VIDEO)**
-
 ---
 
 ## Especificações Técnicas (MVP)
