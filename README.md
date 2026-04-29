@@ -70,4 +70,4 @@
 ---
 >​Issues: Reporte bugs ou sugestões diretamente no GitHub.
 ---
->Perfil Oficial: Contacto direto com o **[Desenvolvedor](https://github.com/TEU_USUARIO/SIRE/releases)**, para questões confidenciais.
+>Perfil Oficial: Contacto direto com o **[Desenvolvedor](adilsonrafael@87gmail.com)**, para questões confidenciais.
