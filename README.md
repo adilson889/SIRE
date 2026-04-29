@@ -66,8 +66,8 @@
 
 >​Para questões técnicas, suporte imediato ou feedback sobre o MVP, utilize os canais oficiais:
 -
->​Grupo de Suporte: Aceder à Comunidade no WhatsApp
+>​Grupo de Suporte: Aceder à **[comunidade no whatsapp](https://github.com/TEU_USUARIO/SIRE/releases)**.
 -
 >​Issues: Reporte bugs ou sugestões diretamente no GitHub.
 -
->​Perfil Oficial: Contacto direto com o desenvolvedor para questões administrativas.
+>​Perfil Oficial: Contacto direto com o **[Desenvolvedor](https://github.com/TEU_USUARIO/SIRE/releases)**, para questões confidenciais.
