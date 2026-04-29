@@ -70,4 +70,4 @@
 ---
 >​Issues: Reporte bugs ou sugestões diretamente no GitHub.
 ---
->Perfil Oficial: Contacto direto com o **[Desenvolvedor](mailto:adilsonrafael@847gmail.com)**, para questões confidenciais.
+>Perfil Oficial: Contacto direto com o **[Desenvolvedor](mailto:adilsonrafael847@gmail.com)**, para questões confidenciais.
