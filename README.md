@@ -42,9 +42,9 @@
 
 ## Instalação e Atualização
 
-> Para garantir a integridade do software, descarregue sempre a versão oficial através deste repositório:
+> Para garantir a integridade do software, descarregue sempre a versão oficial através do nosso canal de distribuição:
 > 
-> 1.  Aceda à secção **[Releases](https://github.com/TEU_USUARIO/SIRE/releases)**.
+> 1.  Aceda ao link oficial de **[Releases](mailto:teuemail@exemplo.com)** (via e-mail).
 > 2.  Descarregue o ficheiro `SIRE_v1.0.0.apk`.
 > 3.  Execute o instalador no seu dispositivo Android.
 > 4.  Certifique-se de que a opção **"Instalar de Fontes Desconhecidas"** está ativa.
@@ -63,11 +63,9 @@
 ---
 
 ### Contacto e Suporte
-
->​Para questões técnicas, suporte imediato ou feedback sobre o MVP, utilize os canais oficiais:
----
->​Grupo de Suporte: Aceder à **[comunidade no whatsapp](https://github.com/TEU_USUARIO/SIRE/releases)**.
----
->​Issues: Reporte bugs ou sugestões diretamente no GitHub.
----
->Perfil Oficial: Contacto direto com o **[Desenvolvedor](mailto:adilsonrafael847@gmail.com)**, para questões confidenciais.
+> Para questões técnicas, suporte imediato ou feedback sobre o MVP, utiliza os canais oficiais:
+> 
+> * **Comunidade:** [![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=flat-square&logo=whatsapp&logoColor=white)](LINK_WHATSAPP) [![Discord](https://img.shields.io/badge/Discord-5865F2?style=flat-square&logo=discord&logoColor=white)](LINK_DISCORD)
+> * **Conteúdo:** [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](LINK_YOUTUBE) [![Hashnode](https://img.shields.io/badge/Hashnode-2962FF?style=flat-square&logo=hashnode&logoColor=white)](LINK_HASHNODE)
+> * **Redes Sociais:** [![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=flat-square&logo=facebook&logoColor=white)](LINK_FACEBOOK) [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](LINK_LINKEDIN) [![Bluesky](https://img.shields.io/badge/Bluesky-0285FF?style=flat-square&logo=bluesky&logoColor=white)](LINK_BLUESKY)
+> * **Feedback:** [Reportar Bug via Issues](https://github.com/TEU_USUARIO/SIRE/issues)
