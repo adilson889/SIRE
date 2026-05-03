@@ -7,26 +7,6 @@
 
 ---
 
-##  Demonstração Visual
-
-> **Interface Principal e Gestão de Registos**
-> <p align="center">
->   <img src="screenshots/Screenshot_2026-04-29-15-01-17-313_com.adilson.sire.jpg" width="45%" alt="Dashboard Principal" />
->   <img src="screenshots/Screenshot_2026-04-29-15-08-10-318_com.adilson.sire.jpg" width="45%" alt="Relatório Semanal" />
-> </p>
-> 
-> **Fluxos de Trabalho e Monitorização**
-> <p align="center">
->   <img src="screenshots/IMG_20260429_150548.jpg" width="30%" />
->   <img src="screenshots/IMG_20260429_150623.jpg" width="30%" />
->   <img src="screenshots/IMG_20260429_150758.jpg" width="30%" />
-> </p>
-> <p align="center">
->   <img src="screenshots/IMG_20260429_151001.jpg" width="30%" />
->   <img src="screenshots/IMG_20260429_151036.jpg" width="30%" />
-> </p>
----
-
 ## Especificações Técnicas (MVP)
 
 > A arquitetura do SIRE utiliza padrões modernos de engenharia de software para garantir fluidez mesmo em dispositivos com hardware limitado:
