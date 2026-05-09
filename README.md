@@ -5,7 +5,7 @@
 
 > O **SIRE** é uma aplicação excelente desenvolvida para a gestão de fluxos financeiros, configurada nativamente para **Kwanzas (KZ)**. Projetado com foco em performance e precisão, o sistema oferece uma interface intuitiva para o controlo de capital, ideal para utilizadores que necessitam de uma visão clara e imediata da sua saúde financeira.
 
----
+--- 
 
 ## Especificações Técnicas (MVP)
 
