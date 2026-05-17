@@ -93,6 +93,262 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:h
 .hc-bar.ent{background:rgba(46,125,50,.5);}
 .hc-bar.sai{background:rgba(139,0,0,.4);}
 
+/* ── NOVIDADES v5.2 ─────────────────────────────────────────────── */
+.novidades{padding:0 32px 80px;}
+.novidades-inner{max-width:1280px;margin:auto;}
+
+.nov-banner{
+  position:relative;
+  border-radius:24px;
+  overflow:hidden;
+  background:linear-gradient(135deg,var(--r3) 0%,#3D0000 50%,#1A0000 100%);
+  border:1.5px solid rgba(139,0,0,.3);
+  box-shadow:0 24px 64px rgba(139,0,0,.18);
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  min-height:380px;
+}
+.nov-banner::before{
+  content:'';
+  position:absolute;
+  top:-60%;right:-10%;
+  width:500px;height:500px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(183,28,28,.25),transparent 65%);
+  pointer-events:none;
+}
+.nov-banner::after{
+  content:'';
+  position:absolute;
+  bottom:-40%;left:-5%;
+  width:300px;height:300px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(139,0,0,.15),transparent 65%);
+  pointer-events:none;
+}
+
+.nov-left{
+  padding:52px 48px;
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.nov-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);
+  padding:6px 14px;
+  border-radius:999px;
+  margin-bottom:24px;
+  width:fit-content;
+}
+.nov-tag span{
+  font-size:.72rem;
+  font-weight:700;
+  letter-spacing:2px;
+  color:white;
+  text-transform:uppercase;
+}
+.nov-version{
+  font-family:var(--serif);
+  font-size:clamp(2.5rem,5vw,4rem);
+  font-weight:700;
+  color:white;
+  line-height:1;
+  margin-bottom:8px;
+}
+.nov-version em{
+  font-style:normal;
+  color:rgba(255,200,200,.8);
+  font-size:.55em;
+  display:block;
+  margin-bottom:4px;
+  font-family:var(--sans);
+  font-weight:400;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+.nov-desc{
+  color:rgba(255,255,255,.65);
+  font-size:.92rem;
+  line-height:1.8;
+  max-width:400px;
+  margin-bottom:32px;
+}
+.nov-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:32px;
+}
+.nov-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  padding:6px 12px;
+  border-radius:8px;
+  font-size:.78rem;
+  color:rgba(255,255,255,.85);
+  font-weight:500;
+}
+.nov-pill svg{width:13px;height:13px;color:rgba(255,200,180,.9);}
+.nov-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.nov-btn-dl{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:white;
+  color:var(--r);
+  padding:14px 26px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:.9rem;
+  transition:.25s;
+}
+.nov-btn-dl:hover{background:var(--bg);transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.2);}
+.nov-btn-notes{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border:1.5px solid rgba(255,255,255,.25);
+  color:rgba(255,255,255,.8);
+  padding:14px 22px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:500;
+  font-size:.88rem;
+  transition:.25s;
+}
+.nov-btn-notes:hover{background:rgba(255,255,255,.1);}
+
+/* Imagem / screenshots lado direito */
+.nov-right{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px 40px 32px 0;
+  gap:16px;
+}
+.nov-img-wrap{
+  position:relative;
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+/* Quando não há imagem real — mockup gerado em CSS */
+.nov-mockup{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:20px;
+  overflow:hidden;
+  flex-shrink:0;
+  box-shadow:0 20px 48px rgba(0,0,0,.3);
+}
+.nov-mockup.primary{width:180px;height:320px;}
+.nov-mockup.secondary{width:150px;height:270px;opacity:.75;margin-top:32px;}
+.nov-mockup-screen{
+  width:100%;height:100%;
+  background:linear-gradient(180deg,#1a0000,#2d0000);
+  display:flex;flex-direction:column;
+  align-items:center;
+  padding:18px 12px;
+  gap:8px;
+}
+.nm-badge{font-size:.58rem;letter-spacing:2px;color:rgba(255,255,255,.4);text-transform:uppercase;}
+.nm-val{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:white;}
+.nm-label{font-size:.6rem;color:rgba(255,255,255,.35);}
+.nm-line{width:100%;height:1px;background:rgba(255,255,255,.08);}
+.nm-ai{background:rgba(139,0,0,.3);border-radius:8px;padding:8px;font-size:.58rem;color:rgba(255,255,255,.7);line-height:1.5;width:100%;}
+.nm-bars{display:flex;gap:4px;align-items:flex-end;height:48px;width:100%;}
+.nm-bar{flex:1;border-radius:2px 2px 0 0;}
+.nm-row{display:flex;justify-content:space-between;width:100%;font-size:.58rem;color:rgba(255,255,255,.4);}
+.nm-row b{color:white;font-size:.6rem;}
+
+/* Se tiver imagem real */
+.nov-img{
+  border-radius:20px;
+  object-fit:cover;
+  box-shadow:0 20px 48px rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.1);
+}
+.nov-img.primary{width:180px;height:320px;}
+.nov-img.secondary{width:150px;height:270px;opacity:.75;margin-top:32px;}
+
+/* Badge flutuante */
+.nov-float-badge{
+  position:absolute;
+  top:-16px;right:-16px;
+  background:white;
+  color:var(--r);
+  border-radius:12px;
+  padding:10px 16px;
+  box-shadow:0 8px 24px rgba(0,0,0,.15);
+  font-size:.75rem;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  white-space:nowrap;
+}
+.nov-float-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--r);animation:pulse 2s infinite;}
+
+/* Changelog strip abaixo do banner */
+.nov-changelog{
+  display:flex;
+  gap:0;
+  margin-top:16px;
+  background:var(--card);
+  border:1.5px solid var(--border2);
+  border-radius:16px;
+  overflow:hidden;
+}
+.nov-cl-item{
+  flex:1;
+  padding:20px 24px;
+  border-right:1px solid var(--border2);
+  display:flex;
+  align-items:center;
+  gap:14px;
+  transition:.2s;
+}
+.nov-cl-item:last-child{border-right:none;}
+.nov-cl-item:hover{background:rgba(139,0,0,.03);}
+.nov-cl-icon{
+  width:36px;height:36px;
+  border-radius:10px;
+  background:rgba(139,0,0,.08);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--r);
+  flex-shrink:0;
+}
+.nov-cl-text h6{font-size:.85rem;font-weight:600;color:var(--text);margin-bottom:2px;}
+.nov-cl-text p{font-size:.75rem;color:var(--muted);}
+
+/* RESPONSIVE novidades */
+@media(max-width:900px){
+  .nov-banner{grid-template-columns:1fr;}
+  .nov-right{display:none;}
+  .nov-left{padding:40px 32px;}
+  .nov-changelog{flex-direction:column;}
+  .nov-cl-item{border-right:none;border-bottom:1px solid var(--border2);}
+  .nov-cl-item:last-child{border-bottom:none;}
+}
+@media(max-width:600px){
+  .novidades{padding:0 20px 60px;}
+  .nov-left{padding:32px 24px;}
+  .nov-pills{gap:6px;}
+}
+
 /* CAROUSEL */
 .carousel-section{border-top:1.5px solid var(--border);border-bottom:1.5px solid var(--border);background:var(--bg2);overflow:hidden;}
 .carousel-wrap{position:relative;height:480px;}
@@ -332,7 +588,7 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
     <div class="hero-left">
       <div class="hero-eyebrow">
         <div class="dot-pulse"></div>
-        <span>Versão 4.0 disponível</span>
+        <span>Versão 5.2 disponível</span>
       </div>
       <h1>A sua <em>inteligência</em><br>financeira.</h1>
       <p class="hero-sub">Sistema de gestão financeira desenvolvido para Angola. IA personalizada, gráficos avançados, simulador financeiro e relatórios PDF. 100% offline.</p>
@@ -341,9 +597,9 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
           <i data-lucide="download" style="width:17px;height:17px;"></i>
           Download Grátis
         </a>
-        <a href="#funcionalidades" class="btn-ghost">
-          <i data-lucide="arrow-right" style="width:17px;height:17px;"></i>
-          Ver funcionalidades
+        <a href="#novidades" class="btn-ghost">
+          <i data-lucide="sparkles" style="width:17px;height:17px;"></i>
+          Ver novidades v5.2
         </a>
       </div>
       <div class="hero-stats">
@@ -356,12 +612,15 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
           <div class="hero-stat-l">Planos</div>
         </div>
         <div>
-          <div class="hero-stat-n">v4.0</div>
+          <div class="hero-stat-n">v5.2</div>
           <div class="hero-stat-l">Versão actual</div>
         </div>
         <div>
-          <div class="hero-stat-n">🇦🇴</div>
-          <div class="hero-stat-l">Angola</div>
+          <div class="hero-stat-n">🇦🇴.   🇧🇷.  🇲🇿.  🇵🇹</div>
+          <div class="hero-stat-l">Angola.   Brasil.Moçambique. Portugal</div>
+          
+          
+          
         </div>
       </div>
     </div>
@@ -397,11 +656,169 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
   </div>
 </section>
 
+<!-- ── NOVIDADES v5.2 ─────────────────────────────────────────── -->
+<section class="novidades" id="novidades">
+  <div class="novidades-inner">
+    <div class="nov-banner reveal">
+
+      <!-- ESQUERDA — texto -->
+      <div class="nov-left">
+        <div class="nov-tag">
+          <div class="dot-pulse"></div>
+          <span>Lançamento</span>
+        </div>
+        <div class="nov-version">
+          <em>Nova versão</em>
+          SIRE 5.2
+        </div>
+        <p class="nov-desc">
+          Relatórios PDF gerados por linguagem natural, gráficos vectoriais A4, backup automático silencioso, simulador de trading e muito mais. A maior actualização desde o lançamento.
+        </p>
+        <div class="nov-pills">
+          <div class="nov-pill">
+            <i data-lucide="file-text" style="width:13px;height:13px;"></i>
+            PDF por prompt
+          </div>
+          <div class="nov-pill">
+            <i data-lucide="bar-chart-2" style="width:13px;height:13px;"></i>
+            4 gráficos novos
+          </div>
+          <div class="nov-pill">
+            <i data-lucide="shield" style="width:13px;height:13px;"></i>
+            Backup 3 níveis
+          </div>
+          <div class="nov-pill">
+            <i data-lucide="trending-up" style="width:13px;height:13px;"></i>
+            Simulador trading
+          </div>
+          <div class="nov-pill">
+            <i data-lucide="brain-circuit" style="width:13px;height:13px;"></i>
+            Sire AI expandida
+          </div>
+          <div class="nov-pill">
+            <i data-lucide="pie-chart" style="width:13px;height:13px;"></i>
+            Gráfico comparação
+          </div>
+        </div>
+        <div class="nov-btns">
+          <a href="https://github.com/adilson889/SIRE/releases/download/v5.2/sire_v5.2_signed.apk"
+             class="nov-btn-dl" target="_blank">
+            <i data-lucide="download" style="width:18px;height:18px;"></i>
+            Download v5.2 — APK
+          </a>
+          <a href="#funcionalidades" class="nov-btn-notes">
+            <i data-lucide="list" style="width:16px;height:16px;"></i>
+            Ver funcionalidades
+          </a>
+        </div>
+      </div>
+
+      <!-- DIREITA — screenshots -->
+      <!--
+        Para usar imagens reais, substitui os .nov-mockup por:
+        <img src="screenshot1.png" class="nov-img primary" alt="SIRE v5.2">
+        <img src="screenshot2.png" class="nov-img secondary" alt="SIRE v5.2">
+      -->
+      <div class="nov-right">
+        <div class="nov-img-wrap">
+          <div class="nov-float-badge">
+            <div class="dot"></div>
+            v5.2 — build 9
+          </div>
+
+          <!-- Mockup principal -->
+          <div class="nov-mockup primary">
+            <div class="nov-mockup-screen">
+              <div class="nm-badge">● Sire AI</div>
+              <div class="nm-val">60.000</div>
+              <div class="nm-label">KZ — Saldo actual</div>
+              <div class="nm-line"></div>
+              <div class="nm-ai">Excelente mês! Reteve 40% das entradas. Continue assim.</div>
+              <div class="nm-bars">
+                <div class="nm-bar" style="background:rgba(46,125,50,.7);height:55%;flex:1;border-radius:2px 2px 0 0;"></div>
+                <div class="nm-bar" style="background:rgba(183,28,28,.5);height:35%;flex:1;border-radius:2px 2px 0 0;"></div>
+                <div class="nm-bar" style="background:rgba(46,125,50,.7);height:70%;flex:1;border-radius:2px 2px 0 0;"></div>
+                <div class="nm-bar" style="background:rgba(183,28,28,.5);height:42%;flex:1;border-radius:2px 2px 0 0;"></div>
+                <div class="nm-bar" style="background:rgba(46,125,50,.7);height:85%;flex:1;border-radius:2px 2px 0 0;"></div>
+              </div>
+              <div class="nm-line"></div>
+              <div class="nm-row"><span>Entradas</span><b style="color:#4CAF50;">+80K</b></div>
+              <div class="nm-row"><span>Saídas</span><b style="color:#EF5350;">-20K</b></div>
+              <div class="nm-row"><span>Poupança</span><b>40%</b></div>
+            </div>
+          </div>
+
+          <!-- Mockup secundário -->
+          <div class="nov-mockup secondary">
+            <div class="nov-mockup-screen" style="background:linear-gradient(180deg,#000d1a,#001a00);">
+              <div class="nm-badge" style="color:rgba(76,175,80,.6);">● PDF AI</div>
+              <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:8px;width:100%;margin-top:4px;">
+                <div style="font-size:.55rem;color:rgba(255,255,255,.3);margin-bottom:6px;">Relatorio Financeiro</div>
+                <div style="display:flex;gap:3px;align-items:flex-end;height:32px;margin-bottom:6px;">
+                  <div style="flex:1;background:rgba(46,125,50,.6);height:70%;border-radius:2px 2px 0 0;"></div>
+                  <div style="flex:1;background:rgba(183,28,28,.5);height:45%;border-radius:2px 2px 0 0;"></div>
+                  <div style="flex:1;background:rgba(46,125,50,.6);height:90%;border-radius:2px 2px 0 0;"></div>
+                  <div style="flex:1;background:rgba(183,28,28,.5);height:35%;border-radius:2px 2px 0 0;"></div>
+                </div>
+                <div style="font-size:.55rem;color:rgba(255,255,255,.4);">Entradas <b style="color:#4CAF50;">+80K</b></div>
+                <div style="font-size:.55rem;color:rgba(255,255,255,.4);">Saidas <b style="color:#EF5350;">-20K</b></div>
+              </div>
+              <div style="margin-top:8px;background:var(--r);border-radius:6px;padding:5px;text-align:center;font-size:.55rem;font-weight:600;width:100%;color:white;">
+                Exportar PDF
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Changelog strip -->
+    <div class="nov-changelog reveal">
+      <div class="nov-cl-item">
+        <div class="nov-cl-icon">
+          <i data-lucide="file-text" style="width:17px;height:17px;"></i>
+        </div>
+        <div class="nov-cl-text">
+          <h6>PDF por linguagem natural</h6>
+          <p>Descreva o relatório e a Sire gera o PDF automaticamente</p>
+        </div>
+      </div>
+      <div class="nov-cl-item">
+        <div class="nov-cl-icon">
+          <i data-lucide="pie-chart" style="width:17px;height:17px;"></i>
+        </div>
+        <div class="nov-cl-text">
+          <h6>4 gráficos animados</h6>
+          <p>Pizza, linha, comparação e anel de poupança com meta</p>
+        </div>
+      </div>
+      <div class="nov-cl-item">
+        <div class="nov-cl-icon">
+          <i data-lucide="shield-check" style="width:17px;height:17px;"></i>
+        </div>
+        <div class="nov-cl-text">
+          <h6>Backup em 3 níveis</h6>
+          <p>Silencioso, Downloads e externo persistente</p>
+        </div>
+      </div>
+      <div class="nov-cl-item">
+        <div class="nov-cl-icon">
+          <i data-lucide="trending-up" style="width:17px;height:17px;"></i>
+        </div>
+        <div class="nov-cl-text">
+          <h6>Simulador de trading</h6>
+          <p>Decisões financeiras simuladas com saldo real</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- CAROUSEL -->
 <div class="carousel-section">
   <div class="carousel-wrap">
     <div class="c-slides" id="cSlides">
-
       <div class="c-slide">
         <div class="c-slide-inner">
           <div class="c-text">
@@ -502,7 +919,6 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
           </div>
         </div>
       </div>
-
     </div>
     <div class="c-arrows">
       <button class="c-arrow" id="cPrev"><i data-lucide="chevron-left" style="width:18px;height:18px;"></i></button>
@@ -542,7 +958,7 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
       <div class="feat reveal">
         <div class="feat-icon"><i data-lucide="shield-check" style="width:22px;height:22px;"></i></div>
         <h4>100% Offline e Seguro</h4>
-        <p>Sem servidores. Sem recolha de dados. As suas finanças ficam exclusivamente no seu dispositivo, com backup automático silencioso.</p>
+        <p>Sem servidores. Sem recolha de dados. As suas finanças ficam exclusivamente no seu dispositivo, com backup automático silencioso em 3 níveis.</p>
       </div>
       <div class="feat reveal">
         <div class="feat-icon"><i data-lucide="landmark" style="width:22px;height:22px;"></i></div>
@@ -550,7 +966,6 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
         <p>Suporte nativo ao Kwanza (KZ). Conteúdo e conselhos adaptados à realidade económica angolana. Desenvolvido por e para angolanos.</p>
       </div>
     </div>
-    <!-- TECH SPEC -->
     <div class="tech-box reveal">
       <div class="tech-item">
         <h5>Motor de Persistência</h5>
@@ -566,7 +981,7 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
       </div>
       <div class="tech-item">
         <h5>Backup</h5>
-        <p>Backup automático silencioso em cada acção. Pasta persistente que sobrevive à reinstalação.</p>
+        <p>Backup automático silencioso em cada acção. 3 níveis: privado, Downloads e externo persistente.</p>
       </div>
     </div>
   </div>
@@ -581,7 +996,6 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
     <h2 class="s-title">Escolha o seu plano.</h2>
     <p class="s-sub">Pague apenas pelo tempo que precisar. Activação via WhatsApp em minutos.</p>
     <div class="pricing-grid">
-
       <div class="pc reveal">
         <div class="pc-name">Semanal</div>
         <div class="pc-desc">Experimente tudo por 7 dias.</div>
@@ -596,7 +1010,6 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
         </ul>
         <a href="https://wa.me/244921325366?text=Quero%20o%20plano%20Semanal%207%20dias" class="pc-btn" target="_blank">Obter via WhatsApp</a>
       </div>
-
       <div class="pc reveal">
         <div class="pc-name">Quinzenal</div>
         <div class="pc-desc">14 dias de controlo total.</div>
@@ -611,7 +1024,6 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
         </ul>
         <a href="https://wa.me/244921325366?text=Quero%20o%20plano%20Quinzenal%2014%20dias" class="pc-btn" target="_blank">Obter via WhatsApp</a>
       </div>
-
       <div class="pc featured reveal">
         <div class="pc-pop">Mais popular</div>
         <div class="pc-name">Mensal</div>
@@ -628,7 +1040,6 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
         </ul>
         <a href="https://wa.me/244921325366?text=Quero%20o%20plano%20Mensal%2030%20dias" class="pc-btn" target="_blank">Obter via WhatsApp</a>
       </div>
-
       <div class="pc reveal">
         <div class="pc-name">Trimestral</div>
         <div class="pc-desc">3 meses com desconto incluído.</div>
@@ -641,7 +1052,6 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
         </ul>
         <a href="https://wa.me/244921325366?text=Quero%20o%20plano%20Trimestral%2090%20dias" class="pc-btn" target="_blank">Obter via WhatsApp</a>
       </div>
-
       <div class="pc reveal">
         <div class="pc-name">Anual</div>
         <div class="pc-desc">O mais económico por dia.</div>
@@ -655,7 +1065,6 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
         </ul>
         <a href="https://wa.me/244921325366?text=Quero%20o%20plano%20Anual%20365%20dias" class="pc-btn" target="_blank">Obter via WhatsApp</a>
       </div>
-
       <div class="pc vitalicio reveal">
         <div class="pc-gold">Vitalício</div>
         <div class="pc-name">Para Sempre</div>
@@ -672,7 +1081,6 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
         <a href="https://wa.me/244921325366?text=Quero%20o%20plano%20Vitalicio" class="pc-btn" target="_blank">Obter via WhatsApp</a>
         <div class="pc-note">Disponível também em USD · EUR · BRL · GBP</div>
       </div>
-
     </div>
   </div>
 </section>
@@ -723,24 +1131,28 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
     <h2 class="s-title">Disponível para Android e Windows.</h2>
     <p class="s-sub">Faça download da versão mais recente. Instalação simples, sem necessidade de conta Google.</p>
     <div class="dl-grid">
-
       <div class="dl-card latest reveal">
         <div class="dl-head">
           <div class="dl-icon droid">🤖</div>
           <div>
             <div class="dl-latest"><div class="dot-pulse"></div>Mais recente</div>
             <h4>Android</h4>
-            <div class="dl-v">v4.0 — build 8</div>
+            <div class="dl-v">v5.2 — build 9</div>
           </div>
         </div>
         <div class="dl-body">
-          <p>Compatível com Android 5.0+. Inclui Sire AI, Simulador Financeiro, gráficos completos, PDF e backup automático.</p>
-          <a href="https://github.com/adilson889/SIRE/releases/download/v4.0/sire_v4.0_signed.apk" class="dl-btn" target="_blank">
+          <p>Compatível com Android 5.0+. Inclui Sire AI expandida, gráficos vectoriais, PDF por prompt, simulador de trading e backup em 3 níveis.</p>
+          <a href="https://github.com/adilson889/SIRE/releases/download/v5.2/sire_v5.2_signed.apk" class="dl-btn" target="_blank">
             <i data-lucide="download" style="width:17px;height:17px;"></i>
-            Download APK — v4.0
+            Download APK — v5.2
           </a>
           <div style="margin-bottom:16px;font-size:.8rem;color:var(--muted);font-weight:500;">Versões anteriores</div>
           <div class="dl-versions">
+            <div class="dl-ver">
+              <span class="vn">v4.0</span>
+              <span class="vd">Mai 2026</span>
+              <a href="https://github.com/adilson889/SIRE/releases/download/v4.0/sire_v4.0_signed.apk" target="_blank"><i data-lucide="download" style="width:13px;height:13px;"></i> APK</a>
+            </div>
             <div class="dl-ver">
               <span class="vn">v3.0</span>
               <span class="vd">Abr 2026</span>
@@ -764,7 +1176,6 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
           </div>
         </div>
       </div>
-
       <div class="dl-card reveal">
         <div class="dl-head">
           <div class="dl-icon win">🪟</div>
@@ -781,19 +1192,20 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
           </a>
         </div>
       </div>
-
     </div>
 
-    <!-- Tabela de versões -->
     <div style="margin-top:64px;">
       <div class="s-label">Histórico completo</div>
       <h3 style="font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--text);margin-bottom:8px;">Todas as versões.</h3>
       <div class="vt reveal">
         <div class="vt-head">
-          <span>Versão</span>
-          <span>Data</span>
-          <span>Plataforma</span>
-          <span>Download</span>
+          <span>Versão</span><span>Data</span><span>Plataforma</span><span>Download</span>
+        </div>
+        <div class="vt-row">
+          <span class="vnum">v5.2 — build 9</span>
+          <span class="vdate">Mai 2026</span>
+          <span class="vplat">Android 5.0+</span>
+          <a href="https://github.com/adilson889/SIRE/releases/download/v5.2/sire_v5.2_signed.apk" target="_blank"><i data-lucide="download" style="width:13px;height:13px;"></i> APK</a>
         </div>
         <div class="vt-row">
           <span class="vnum">v4.0 — build 8</span>
@@ -894,9 +1306,9 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
     <h2>O seu dinheiro merece inteligência.</h2>
     <p>Junte-se aos utilizadores que já controlam as suas finanças com a SIRE. Download gratuito, activação simples via WhatsApp.</p>
     <div class="cta-btns">
-      <a href="https://github.com/adilson889/SIRE/releases/download/v4.0/sire_v4.0_signed.apk" class="cta-btn-w" target="_blank">
+      <a href="https://github.com/adilson889/SIRE/releases/download/v5.2/sire_v5.2_signed.apk" class="cta-btn-w" target="_blank">
         <i data-lucide="download" style="width:18px;height:18px;"></i>
-        Download Agora
+        Download Agora — v5.2
       </a>
       <a href="https://wa.me/244921325366" class="cta-btn-o" target="_blank">
         <i data-lucide="message-circle" style="width:18px;height:18px;"></i>
@@ -931,12 +1343,10 @@ footer{border-top:1.5px solid var(--border);padding:48px 32px;}
 <script>
 lucide.createIcons();
 
-// NAV scroll
 window.addEventListener('scroll',()=>{
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
 });
 
-// Mobile menu
 function toggleMenu(){
   document.getElementById('mobileMenu').classList.toggle('open');
 }
@@ -969,7 +1379,7 @@ document.getElementById('cNext').onclick = ()=>{ clearInterval(timer); goTo(cur+
 function startTimer(){ timer = setInterval(()=> goTo(cur+1), 5000); }
 startTimer();
 
-// REVEAL on scroll
+// REVEAL
 const obs = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
 },{threshold:0.1});
