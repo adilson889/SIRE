@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SIRE — Sistema de Gestão Financeira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{
+  --r:#8B0000;
+  --r2:#B71C1C;
+  --r3:#5E0000;
+  --r4:#6E0000;
+  --bg:#F5F0E8;
+  --bg2:#EDE8DF;
+  --bg3:#E5DDD0;
+  --card:#FAF7F2;
+  --card2:#F0EBE2;
+  --border:rgba(139,0,0,0.12);
+  --border2:rgba(139,0,0,0.08);
+  --text:#1C1209;
+  --text2:#3D2B1F;
+  --muted:#7A6555;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'DM Sans',sans-serif;
+  --mono:'DM Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.6;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--r);}
+
+/* NAV */
+.nav{position:fixed;top:0;width:100%;z-index:999;transition:.3s;}
+.nav.scrolled{background:rgba(245,240,232,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);box-shadow:0 2px 20px rgba(139,0,0,.06);}
+.nav-inner{max-width:1280px;margin:auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:70px;}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-svg{width:38px;height:38px;}
+.nav-brand{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--text);letter-spacing:3px;}
+.nav-menu{display:flex;align-items:center;gap:8px;}
+.nav-menu a{color:var(--muted);text-decoration:none;font-size:.85rem;font-weight:500;padding:8px 14px;border-radius:8px;transition:.2s;white-space:nowrap;}
+.nav-menu a:hover{color:var(--text);background:rgba(139,0,0,.06);}
+.nav-cta{background:var(--r);color:white;padding:10px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:.85rem;transition:.2s;margin-left:8px;}
+.nav-cta:hover{background:var(--r2);}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;}
+.nav-hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(245,240,232,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:998;padding:20px 32px;flex-direction:column;gap:4px;}
+.mobile-menu a{color:var(--text);text-decoration:none;font-size:.95rem;font-weight:500;padding:12px 0;border-bottom:1px solid var(--border2);}
+.mobile-menu.open{display:flex;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:130px 32px 100px;}
+.hero-texture{position:absolute;inset:0;background-image:radial-gradient(rgba(139,0,0,.06) 1px,transparent 1px);background-size:32px 32px;}
+.hero-glow{position:absolute;top:-10%;right:-5%;width:55%;height:80%;background:radial-gradient(ellipse,rgba(139,0,0,.08) 0%,transparent 65%);pointer-events:none;}
+.hero-inner{max-width:1280px;margin:auto;width:100%;position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.hero-left{}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;background:rgba(139,0,0,.08);border:1px solid rgba(139,0,0,.2);padding:7px 16px;border-radius:999px;margin-bottom:32px;}
+.hero-eyebrow span{font-size:.75rem;font-weight:600;letter-spacing:2px;color:var(--r);text-transform:uppercase;}
+.dot-pulse{width:6px;height:6px;border-radius:50%;background:var(--r);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+.hero h1{font-family:var(--serif);font-size:clamp(3rem,5.5vw,5.5rem);font-weight:700;line-height:1.05;margin-bottom:24px;color:var(--text);}
+.hero h1 em{font-style:normal;color:var(--r);}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:480px;margin-bottom:40px;line-height:1.8;font-weight:300;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:60px;}
+.btn-red{display:inline-flex;align-items:center;gap:10px;background:var(--r);color:white;padding:15px 28px;border-radius:10px;text-decoration:none;font-weight:600;font-size:.9rem;transition:.25s;}
+.btn-red:hover{background:var(--r2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(139,0,0,.25);}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;border:1.5px solid var(--border);color:var(--text2);padding:15px 28px;border-radius:10px;text-decoration:none;font-weight:500;font-size:.9rem;transition:.25s;}
+.btn-ghost:hover{border-color:rgba(139,0,0,.3);background:rgba(139,0,0,.04);}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap;}
+.hero-stat-n{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--r);line-height:1;}
+.hero-stat-l{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px;}
+
+/* HERO CARD */
+.hero-card{background:var(--card);border:1.5px solid var(--border);border-radius:24px;padding:32px;box-shadow:0 20px 60px rgba(139,0,0,.08);}
+.hc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.hc-badge{font-family:var(--mono);font-size:.72rem;letter-spacing:2px;color:var(--r);font-weight:500;}
+.hc-dot{width:8px;height:8px;border-radius:50%;background:var(--r);animation:pulse 2s infinite;}
+.hc-balance{font-family:var(--serif);font-size:2.8rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.hc-label{font-size:.8rem;color:var(--muted);margin-bottom:20px;}
+.hc-ai{background:rgba(139,0,0,.06);border:1px solid rgba(139,0,0,.12);border-radius:12px;padding:14px 16px;font-size:.82rem;color:var(--text2);line-height:1.5;margin-bottom:20px;}
+.hc-ai strong{color:var(--r);font-weight:600;}
+.hc-row{display:flex;gap:12px;}
+.hc-box{flex:1;background:var(--bg2);border-radius:12px;padding:16px;text-align:center;}
+.hc-box-v{font-family:var(--serif);font-size:1.5rem;font-weight:700;}
+.hc-box-l{font-size:.72rem;color:var(--muted);margin-top:4px;}
+.hc-bars{display:flex;gap:6px;align-items:flex-end;height:56px;margin-bottom:16px;}
+.hc-bar{flex:1;border-radius:3px 3px 0 0;background:rgba(139,0,0,.15);}
+.hc-bar.ent{background:rgba(46,125,50,.5);}
+.hc-bar.sai{background:rgba(139,0,0,.4);}
+
+/* CAROUSEL */
+.carousel-section{border-top:1.5px solid var(--border);border-bottom:1.5px solid var(--border);background:var(--bg2);overflow:hidden;}
+.carousel-wrap{position:relative;height:480px;}
+.c-slides{display:flex;height:100%;transition:transform .7s cubic-bezier(.77,0,.18,1);}
+.c-slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:40px 60px;}
+.c-slide-inner{display:grid;grid-template-columns:1fr auto;max-width:1200px;width:100%;gap:80px;align-items:center;}
+.c-text .c-label{font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--r);font-weight:600;margin-bottom:14px;}
+.c-text h2{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:700;color:var(--text);margin-bottom:14px;line-height:1.15;}
+.c-text p{color:var(--muted);font-size:.95rem;line-height:1.8;max-width:460px;}
+.c-phone{width:200px;height:400px;background:var(--r3);border-radius:32px;border:2px solid rgba(139,0,0,.3);overflow:hidden;box-shadow:0 30px 60px rgba(139,0,0,.15);flex-shrink:0;}
+.c-screen{width:100%;height:100%;background:linear-gradient(180deg,#1a0000,#2d0000);display:flex;flex-direction:column;align-items:center;padding:18px 14px;gap:8px;}
+.c-s-badge{font-size:.6rem;letter-spacing:2px;color:rgba(255,255,255,.5);text-transform:uppercase;}
+.c-s-val{font-family:var(--serif);font-size:2rem;font-weight:700;color:white;}
+.c-s-label{font-size:.65rem;color:rgba(255,255,255,.4);}
+.c-s-line{width:100%;height:1px;background:rgba(255,255,255,.1);}
+.c-s-row{display:flex;justify-content:space-between;width:100%;font-size:.65rem;color:rgba(255,255,255,.5);}
+.c-s-row b{color:white;}
+.c-s-bars{display:flex;gap:6px;align-items:flex-end;height:64px;width:100%;}
+.c-s-bar{flex:1;border-radius:3px 3px 0 0;}
+.c-arrows{position:absolute;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;width:100%;padding:0 20px;pointer-events:none;z-index:10;}
+.c-arrow{width:40px;height:40px;border-radius:50%;background:var(--card);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);cursor:pointer;pointer-events:all;transition:.2s;}
+.c-arrow:hover{background:var(--r);color:white;border-color:var(--r);}
+.c-dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10;}
+.c-dot{width:7px;height:7px;border-radius:50%;background:rgba(139,0,0,.2);cursor:pointer;transition:.3s;}
+.c-dot.on{background:var(--r);width:22px;border-radius:4px;}
+
+/* SECTIONS */
+.section{padding:110px 32px;}
+.s-inner{max-width:1280px;margin:auto;}
+.s-label{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--r);font-weight:600;margin-bottom:14px;}
+.s-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--text);margin-bottom:16px;line-height:1.15;}
+.s-sub{color:var(--muted);font-size:.95rem;max-width:580px;line-height:1.8;}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px;margin-top:60px;}
+.feat{background:var(--card);border:1.5px solid var(--border2);border-radius:20px;padding:36px;transition:.3s;position:relative;overflow:hidden;}
+.feat::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--r),var(--r2));transform:scaleX(0);transform-origin:left;transition:.3s;}
+.feat:hover{box-shadow:0 12px 40px rgba(139,0,0,.08);transform:translateY(-4px);}
+.feat:hover::after{transform:scaleX(1);}
+.feat-icon{width:50px;height:50px;border-radius:14px;background:rgba(139,0,0,.08);border:1.5px solid rgba(139,0,0,.15);display:flex;align-items:center;justify-content:center;color:var(--r);margin-bottom:22px;}
+.feat h4{font-size:1rem;font-weight:600;margin-bottom:10px;color:var(--text);}
+.feat p{color:var(--muted);font-size:.88rem;line-height:1.7;}
+
+/* TECH SPEC */
+.tech-box{background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:40px;margin-top:50px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;}
+.tech-item{}
+.tech-item h5{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--r);font-weight:600;margin-bottom:8px;}
+.tech-item p{font-size:.88rem;color:var(--muted);line-height:1.6;}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:60px;}
+.pc{background:var(--card);border:1.5px solid var(--border2);border-radius:20px;padding:36px 28px;transition:.3s;position:relative;}
+.pc:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(139,0,0,.08);}
+.pc.featured{background:var(--r3);border-color:rgba(139,0,0,.4);color:white;}
+.pc.vitalicio{background:linear-gradient(145deg,#fdf8ef,#f5eddc);border-color:rgba(180,140,60,.35);}
+.pc-pop{display:inline-block;background:var(--r);color:white;font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:16px;}
+.pc.featured .pc-pop{background:rgba(255,255,255,.2);}
+.pc-gold{display:inline-block;background:linear-gradient(90deg,#C9A84C,#E8C86A);color:#3D2B00;font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:999px;margin-bottom:16px;}
+.pc-name{font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:6px;}
+.pc.featured .pc-name,.pc.featured .pc-desc{color:white;}
+.pc-desc{color:var(--muted);font-size:.82rem;margin-bottom:24px;}
+.pc-price{font-family:var(--serif);font-size:2.6rem;font-weight:700;margin-bottom:4px;}
+.pc.featured .pc-price{color:white;}
+.pc-gold-price{font-family:var(--serif);font-size:2.6rem;font-weight:700;background:linear-gradient(90deg,#C9A84C,#A0722A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.pc-period{font-size:.8rem;color:var(--muted);margin-bottom:24px;}
+.pc.featured .pc-period{color:rgba(255,255,255,.6);}
+.pc-div{height:1px;background:var(--border);margin-bottom:22px;}
+.pc.featured .pc-div{background:rgba(255,255,255,.15);}
+.pc-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.pc-feats li{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted);}
+.pc-feats li.on{color:var(--text);}
+.pc.featured .pc-feats li.on{color:white;}
+.pc-feats li .ck{color:#2E7D32;flex-shrink:0;}
+.pc-btn{display:block;text-align:center;padding:13px;border-radius:10px;text-decoration:none;font-weight:600;font-size:.88rem;transition:.2s;border:1.5px solid var(--border);color:var(--text2);}
+.pc-btn:hover{background:rgba(139,0,0,.06);border-color:rgba(139,0,0,.2);}
+.pc.featured .pc-btn{background:white;color:var(--r);border-color:white;}
+.pc.featured .pc-btn:hover{background:rgba(255,255,255,.9);}
+.pc.vitalicio .pc-btn{background:linear-gradient(90deg,#C9A84C,#A0722A);color:white;border-color:transparent;font-weight:700;}
+.pc-note{font-size:.72rem;color:var(--muted);text-align:center;margin-top:10px;}
+
+/* PAYMENT */
+.pay-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:50px;}
+.pay-card{background:var(--card);border:1.5px solid var(--border2);border-radius:16px;padding:26px;transition:.25s;}
+.pay-card:hover{border-color:rgba(139,0,0,.25);box-shadow:0 8px 24px rgba(139,0,0,.06);}
+.pay-icon{width:44px;height:44px;border-radius:12px;background:rgba(139,0,0,.08);display:flex;align-items:center;justify-content:center;color:var(--r);margin-bottom:14px;}
+.pay-tag{font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--r);background:rgba(139,0,0,.08);padding:3px 10px;border-radius:999px;display:inline-block;margin-bottom:10px;}
+.pay-card h5{font-weight:600;font-size:.95rem;margin-bottom:6px;color:var(--text);}
+.pay-card p{color:var(--muted);font-size:.82rem;line-height:1.5;}
+
+/* DOWNLOADS */
+.dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:60px;}
+.dl-card{background:var(--card);border:1.5px solid var(--border2);border-radius:20px;overflow:hidden;transition:.3s;}
+.dl-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(139,0,0,.08);}
+.dl-card.latest{border-color:rgba(139,0,0,.3);box-shadow:0 4px 20px rgba(139,0,0,.07);}
+.dl-head{padding:28px;border-bottom:1.5px solid var(--border2);display:flex;align-items:center;gap:16px;}
+.dl-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;}
+.dl-icon.droid{background:rgba(61,220,151,.1);}
+.dl-icon.win{background:rgba(0,120,212,.1);}
+.dl-meta h4{font-weight:600;font-size:1rem;color:var(--text);}
+.dl-v{font-family:var(--mono);font-size:.72rem;color:var(--r);margin-top:3px;}
+.dl-latest{display:inline-flex;align-items:center;gap:6px;background:rgba(139,0,0,.08);border:1px solid rgba(139,0,0,.2);color:var(--r);font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-bottom:6px;}
+.dl-body{padding:28px;}
+.dl-body p{color:var(--muted);font-size:.85rem;margin-bottom:20px;line-height:1.6;}
+.dl-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--r);color:white;padding:13px;border-radius:10px;text-decoration:none;font-weight:600;font-size:.88rem;transition:.2s;margin-bottom:12px;}
+.dl-btn:hover{background:var(--r2);}
+.dl-btn.ghost{background:transparent;border:1.5px solid var(--border);color:var(--text2);}
+.dl-btn.ghost:hover{border-color:rgba(139,0,0,.3);background:rgba(139,0,0,.04);}
+.dl-versions{display:flex;flex-direction:column;gap:0;}
+.dl-ver{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border2);font-size:.82rem;}
+.dl-ver:last-child{border-bottom:none;}
+.dl-ver .vn{font-family:var(--mono);color:var(--muted);}
+.dl-ver .vd{color:var(--muted);font-size:.78rem;}
+.dl-ver a{color:var(--r);text-decoration:none;font-size:.78rem;font-weight:600;display:flex;align-items:center;gap:4px;}
+.dl-ver a:hover{text-decoration:underline;}
+
+/* VERSIONS TABLE */
+.vt{background:var(--card);border:1.5px solid var(--border2);border-radius:16px;overflow:hidden;margin-top:48px;}
+.vt-head{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;padding:14px 24px;background:rgba(139,0,0,.04);border-bottom:1.5px solid var(--border2);}
+.vt-head span{font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:600;}
+.vt-row{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;padding:16px 24px;border-bottom:1px solid var(--border2);align-items:center;transition:.2s;}
+.vt-row:last-child{border-bottom:none;}
+.vt-row:hover{background:rgba(139,0,0,.03);}
+.vt-row .vnum{font-family:var(--mono);font-size:.85rem;color:var(--r);}
+.vt-row .vdate{color:var(--muted);font-size:.85rem;}
+.vt-row .vplat{color:var(--muted);font-size:.82rem;}
+.vt-row a{display:inline-flex;align-items:center;gap:6px;color:var(--r);text-decoration:none;font-size:.82rem;font-weight:600;}
+
+/* COMMUNITY */
+.comm-box{background:var(--r3);border-radius:24px;padding:60px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-top:50px;}
+.comm-left h3{font-family:var(--serif);font-size:2rem;color:white;margin-bottom:12px;}
+.comm-left p{color:rgba(255,255,255,.65);max-width:500px;font-size:.92rem;line-height:1.7;}
+.comm-btn{display:inline-flex;align-items:center;gap:12px;background:white;color:var(--r);padding:16px 32px;border-radius:10px;text-decoration:none;font-weight:700;white-space:nowrap;transition:.2s;flex-shrink:0;}
+.comm-btn:hover{background:var(--bg);transform:translateY(-2px);}
+
+/* PARTNERS */
+.part-grid{display:flex;flex-wrap:wrap;gap:14px;margin-top:50px;}
+.part-pill{display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--border2);padding:14px 22px;border-radius:14px;transition:.2s;}
+.part-pill:hover{border-color:rgba(139,0,0,.25);box-shadow:0 4px 16px rgba(139,0,0,.06);}
+.part-icon{width:36px;height:36px;border-radius:10px;background:rgba(139,0,0,.08);display:flex;align-items:center;justify-content:center;color:var(--r);}
+.part-name{font-weight:600;font-size:.88rem;color:var(--text);}
+.part-type{color:var(--muted);font-size:.75rem;}
+
+/* CTA */
+.cta-wrap{padding:60px 32px;}
+.cta-box{max-width:1280px;margin:auto;background:linear-gradient(135deg,var(--r3),var(--r));border-radius:28px;padding:90px 60px;text-align:center;position:relative;overflow:hidden;}
+.cta-box::before{content:'';position:absolute;top:-40%;right:-10%;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.05);}
+.cta-box h2{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.5rem);font-weight:700;color:white;margin-bottom:18px;position:relative;}
+.cta-box p{color:rgba(255,255,255,.75);font-size:1rem;max-width:560px;margin:auto auto 36px;position:relative;line-height:1.8;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;}
+.cta-btn-w{background:white;color:var(--r);display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:10px;text-decoration:none;font-weight:700;transition:.2s;}
+.cta-btn-w:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.2);}
+.cta-btn-o{border:1.5px solid rgba(255,255,255,.35);color:white;display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:10px;text-decoration:none;font-weight:600;transition:.2s;}
+.cta-btn-o:hover{background:rgba(255,255,255,.1);}
+
+/* FOOTER */
+footer{border-top:1.5px solid var(--border);padding:48px 32px;}
+.foot-inner{max-width:1280px;margin:auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;}
+.foot-brand{display:flex;align-items:center;gap:12px;}
+.foot-brand-name{font-family:var(--serif);font-size:1.3rem;letter-spacing:2px;color:var(--text);}
+.foot-links{display:flex;gap:28px;flex-wrap:wrap;}
+.foot-links a{color:var(--muted);text-decoration:none;font-size:.85rem;transition:.2s;}
+.foot-links a:hover{color:var(--r);}
+.foot-copy{color:var(--muted);font-size:.8rem;}
+
+/* DIVIDER */
+.sec-div{border:none;border-top:1.5px solid var(--border);margin:0;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* MOBILE */
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-card{display:none;}
+  .c-slide-inner{grid-template-columns:1fr;}
+  .c-phone{display:none;}
+  .nav-menu{display:none;}
+  .nav-hamburger{display:flex;}
+}
+@media(max-width:600px){
+  .section{padding:70px 20px;}
+  .hero{padding:110px 20px 70px;}
+  .cta-box{padding:60px 28px;}
+  .comm-box{padding:40px 28px;}
+  .vt-head,.vt-row{grid-template-columns:1fr 1fr;}
+  .vt-head span:nth-child(3),.vt-row .vplat{display:none;}
+  .foot-inner{flex-direction:column;text-align:center;}
+  .foot-links{justify-content:center;}
+  .cta-wrap{padding:40px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <svg class="logo-svg" viewBox="0 0 38 38">
+        <circle cx="19" cy="19" r="19" fill="#8B0000"/>
+        <text x="19" y="26" text-anchor="middle" fill="white" font-family="Cormorant Garamond,serif" font-size="17" font-weight="700" letter-spacing="1">S</text>
+      </svg>
+      <span class="nav-brand">SIRE</span>
+    </a>
+    <div class="nav-menu">
+      <a href="#sobre">Sobre</a>
+      <a href="#funcionalidades">Funcionalidades</a>
+      <a href="#planos">Planos</a>
+      <a href="#pagamento">Pagamento</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#comunidade">Comunidade</a>
+      <a href="#parcerias">Parcerias</a>
+      <a href="https://wa.me/244921325366" class="nav-cta" target="_blank">Activar</a>
+    </div>
+    <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre" onclick="closeMenu()">Sobre</a>
+  <a href="#funcionalidades" onclick="closeMenu()">Funcionalidades</a>
+  <a href="#planos" onclick="closeMenu()">Planos</a>
+  <a href="#pagamento" onclick="closeMenu()">Pagamento</a>
+  <a href="#downloads" onclick="closeMenu()">Downloads</a>
+  <a href="#comunidade" onclick="closeMenu()">Comunidade</a>
+  <a href="#parcerias" onclick="closeMenu()">Parcerias</a>
+  <a href="https://wa.me/244921325366" target="_blank">Activar agora</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="sobre">
+  <div class="hero-texture"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="dot-pulse"></div>
+        <span>Versão 4.0 disponível</span>
+      </div>
+      <h1>A sua <em>inteligência</em><br>financeira.</h1>
+      <p class="hero-sub">Sistema de gestão financeira desenvolvido para Angola. IA personalizada, gráficos avançados, simulador financeiro e relatórios PDF. 100% offline.</p>
+      <div class="hero-btns">
+        <a href="#downloads" class="btn-red">
+          <i data-lucide="download" style="width:17px;height:17px;"></i>
+          Download Grátis
+        </a>
+        <a href="#funcionalidades" class="btn-ghost">
+          <i data-lucide="arrow-right" style="width:17px;height:17px;"></i>
+          Ver funcionalidades
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-n">100%</div>
+          <div class="hero-stat-l">Offline</div>
+        </div>
+        <div>
+          <div class="hero-stat-n">6</div>
+          <div class="hero-stat-l">Planos</div>
+        </div>
+        <div>
+          <div class="hero-stat-n">v4.0</div>
+          <div class="hero-stat-l">Versão actual</div>
+        </div>
+        <div>
+          <div class="hero-stat-n">🇦🇴</div>
+          <div class="hero-stat-l">Angola</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card reveal">
+      <div class="hc-top">
+        <span class="hc-badge">● SIRE — Dashboard</span>
+        <div class="hc-dot"></div>
+      </div>
+      <div class="hc-balance">85.200 KZ</div>
+      <div class="hc-label">Saldo total actual</div>
+      <div class="hc-bars">
+        <div class="hc-bar ent" style="height:40%;"></div>
+        <div class="hc-bar sai" style="height:55%;"></div>
+        <div class="hc-bar ent" style="height:32%;"></div>
+        <div class="hc-bar sai" style="height:48%;"></div>
+        <div class="hc-bar ent" style="height:65%;"></div>
+        <div class="hc-bar sai" style="height:38%;"></div>
+        <div class="hc-bar ent" style="height:72%;"></div>
+        <div class="hc-bar sai" style="height:44%;"></div>
+      </div>
+      <div class="hc-ai"><strong>Sire AI:</strong> "Gastaste menos 12% este mês. Continue assim e duplicas a poupança em 9 anos pela Regra dos 72."</div>
+      <div class="hc-row">
+        <div class="hc-box">
+          <div class="hc-box-v" style="color:#2E7D32;">+120K</div>
+          <div class="hc-box-l">Entradas</div>
+        </div>
+        <div class="hc-box">
+          <div class="hc-box-v" style="color:var(--r);">34%</div>
+          <div class="hc-box-l">Poupança</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAROUSEL -->
+<div class="carousel-section">
+  <div class="carousel-wrap">
+    <div class="c-slides" id="cSlides">
+
+      <div class="c-slide">
+        <div class="c-slide-inner">
+          <div class="c-text">
+            <div class="c-label">Dashboard</div>
+            <h2>Saldo e registos sempre à vista.</h2>
+            <p>Interface limpa e rápida. Veja o saldo total, entradas, saídas e histórico completo num único ecrã. Desenhado para leitura imediata.</p>
+          </div>
+          <div class="c-phone">
+            <div class="c-screen">
+              <div class="c-s-badge">● SIRE</div>
+              <div class="c-s-val">85.200</div>
+              <div class="c-s-label">KZ — Saldo total</div>
+              <div class="c-s-bars">
+                <div class="c-s-bar" style="background:rgba(46,125,50,.7);height:42%;flex:1;border-radius:3px 3px 0 0;"></div>
+                <div class="c-s-bar" style="background:rgba(183,28,28,.6);height:55%;flex:1;border-radius:3px 3px 0 0;"></div>
+                <div class="c-s-bar" style="background:rgba(46,125,50,.7);height:30%;flex:1;border-radius:3px 3px 0 0;"></div>
+                <div class="c-s-bar" style="background:rgba(183,28,28,.6);height:48%;flex:1;border-radius:3px 3px 0 0;"></div>
+                <div class="c-s-bar" style="background:rgba(46,125,50,.7);height:65%;flex:1;border-radius:3px 3px 0 0;"></div>
+                <div class="c-s-bar" style="background:rgba(183,28,28,.6);height:38%;flex:1;border-radius:3px 3px 0 0;"></div>
+              </div>
+              <div class="c-s-line"></div>
+              <div class="c-s-row"><span>Entradas</span><b style="color:#4CAF50;">+120K</b></div>
+              <div class="c-s-row"><span>Saídas</span><b style="color:#EF5350;">-34.8K</b></div>
+              <div class="c-s-row"><span>Poupança</span><b>34%</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="c-slide">
+        <div class="c-slide-inner">
+          <div class="c-text">
+            <div class="c-label" style="color:#2E7D32;">Sire AI</div>
+            <h2>A sua assistente financeira pessoal.</h2>
+            <p>A Sire AI conhece as suas finanças e conversa consigo. Curiosidades, conselhos e análises baseadas nos seus dados reais — não em exemplos genéricos.</p>
+          </div>
+          <div class="c-phone">
+            <div class="c-screen" style="background:linear-gradient(180deg,#0d1a0d,#001a00);">
+              <div class="c-s-badge" style="color:rgba(76,175,80,.7);">● SIRE AI</div>
+              <div style="display:flex;flex-direction:column;gap:8px;width:100%;margin-top:8px;">
+                <div style="background:rgba(46,125,50,.2);border-radius:10px 10px 10px 3px;padding:8px 10px;font-size:.62rem;color:rgba(255,255,255,.8);line-height:1.5;">Sr. Adilson, gastaste 12% menos este mês. Excelente!</div>
+                <div style="background:rgba(255,255,255,.08);border-radius:10px 10px 3px 10px;padding:8px 10px;font-size:.62rem;color:rgba(255,255,255,.7);line-height:1.5;align-self:flex-end;">Como posso poupar mais?</div>
+                <div style="background:rgba(46,125,50,.2);border-radius:10px 10px 10px 3px;padding:8px 10px;font-size:.62rem;color:rgba(255,255,255,.8);line-height:1.5;">Regra dos 72: guarda 10% fixo todo mês. Em 9 anos o capital duplica sozinho.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="c-slide">
+        <div class="c-slide-inner">
+          <div class="c-text">
+            <div class="c-label" style="color:#A0722A;">Simulador</div>
+            <h2>Aprenda a decidir sem riscos reais.</h2>
+            <p>Tome decisões financeiras simuladas com o seu saldo real como ponto de partida. Veja o impacto em tempo real e receba conselhos da IA com base nas suas escolhas.</p>
+          </div>
+          <div class="c-phone">
+            <div class="c-screen" style="background:linear-gradient(180deg,#1a1200,#0d0a00);">
+              <div class="c-s-badge" style="color:rgba(201,168,76,.7);">● SIMULADOR</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:#C9A84C;">92.400 KZ</div>
+              <div class="c-s-label">Saldo simulado</div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;margin:10px 0;justify-content:center;">
+                <div style="background:rgba(201,168,76,.2);border:1px solid rgba(201,168,76,.4);border-radius:6px;padding:5px 8px;font-size:.58rem;color:#C9A84C;">Investir 20%</div>
+                <div style="background:rgba(255,255,255,.06);border-radius:6px;padding:5px 8px;font-size:.58rem;color:rgba(255,255,255,.5);">Poupar 10%</div>
+                <div style="background:rgba(255,255,255,.06);border-radius:6px;padding:5px 8px;font-size:.58rem;color:rgba(255,255,255,.5);">Comprar carro</div>
+              </div>
+              <div class="c-s-line"></div>
+              <div style="font-size:.6rem;color:rgba(76,175,80,.8);line-height:1.5;text-align:center;">↑ Decisão inteligente! Continue a investir com disciplina.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="c-slide">
+        <div class="c-slide-inner">
+          <div class="c-text">
+            <div class="c-label" style="color:#1565C0;">Relatórios PDF</div>
+            <h2>Relatórios profissionais em segundos.</h2>
+            <p>Gere relatórios completos com gráficos, tabelas e análises personalizadas. Um simples comando de texto e o PDF está pronto para partilhar ou arquivar.</p>
+          </div>
+          <div class="c-phone">
+            <div class="c-screen" style="background:linear-gradient(180deg,#0a0a1a,#000010);">
+              <div class="c-s-badge" style="color:rgba(92,155,239,.7);">● RELATÓRIO PDF</div>
+              <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:10px;width:100%;margin-top:8px;">
+                <div style="font-size:.58rem;color:rgba(255,255,255,.4);margin-bottom:6px;">Maio 2026</div>
+                <div style="display:flex;gap:4px;align-items:flex-end;height:40px;margin-bottom:8px;">
+                  <div style="flex:1;background:rgba(46,125,50,.6);height:70%;border-radius:2px 2px 0 0;"></div>
+                  <div style="flex:1;background:rgba(183,28,28,.5);height:45%;border-radius:2px 2px 0 0;"></div>
+                  <div style="flex:1;background:rgba(46,125,50,.6);height:90%;border-radius:2px 2px 0 0;"></div>
+                  <div style="flex:1;background:rgba(183,28,28,.5);height:35%;border-radius:2px 2px 0 0;"></div>
+                  <div style="flex:1;background:rgba(46,125,50,.6);height:80%;border-radius:2px 2px 0 0;"></div>
+                </div>
+                <div class="c-s-row"><span>Entradas</span><b style="color:#4CAF50;font-size:.6rem;">+1.050 USD</b></div>
+                <div class="c-s-row"><span>Saídas</span><b style="color:#EF5350;font-size:.6rem;">-900 USD</b></div>
+              </div>
+              <div style="margin-top:10px;background:var(--r);border-radius:8px;padding:7px;text-align:center;font-size:.62rem;font-weight:600;width:100%;">Exportar PDF</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="c-arrows">
+      <button class="c-arrow" id="cPrev"><i data-lucide="chevron-left" style="width:18px;height:18px;"></i></button>
+      <button class="c-arrow" id="cNext"><i data-lucide="chevron-right" style="width:18px;height:18px;"></i></button>
+    </div>
+    <div class="c-dots" id="cDots"></div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="funcionalidades">
+  <div class="s-inner">
+    <div class="s-label">Funcionalidades</div>
+    <h2 class="s-title">Tudo o que precisa, num só app.</h2>
+    <p class="s-sub">Desenvolvido com arquitectura moderna para garantir fluidez mesmo em dispositivos com hardware limitado.</p>
+    <div class="features-grid">
+      <div class="feat reveal">
+        <div class="feat-icon"><i data-lucide="brain-circuit" style="width:22px;height:22px;"></i></div>
+        <h4>Sire AI — Assistente Financeira</h4>
+        <p>Conversa contigo, analisa os teus gastos e dá sugestões inteligentes baseadas nos teus hábitos e dados reais. Curiosidades financeiras incluídas.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon"><i data-lucide="pie-chart" style="width:22px;height:22px;"></i></div>
+        <h4>Gráficos Avançados</h4>
+        <p>Pizza, barras, linha, comparação mensal e anel de poupança. Todos animados e desenhados para uma leitura rápida e clara dos seus dados financeiros.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon"><i data-lucide="gamepad-2" style="width:22px;height:22px;"></i></div>
+        <h4>Simulador Financeiro</h4>
+        <p>Tome decisões financeiras simuladas com o seu saldo real como base. Aprenda sobre investimentos, poupança e despesas sem qualquer risco.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon"><i data-lucide="file-text" style="width:22px;height:22px;"></i></div>
+        <h4>Relatórios PDF Profissionais</h4>
+        <p>Gere relatórios completos com gráficos e tabelas por comando de texto. Exportação rápida e elegante para partilhar ou arquivar.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon"><i data-lucide="shield-check" style="width:22px;height:22px;"></i></div>
+        <h4>100% Offline e Seguro</h4>
+        <p>Sem servidores. Sem recolha de dados. As suas finanças ficam exclusivamente no seu dispositivo, com backup automático silencioso.</p>
+      </div>
+      <div class="feat reveal">
+        <div class="feat-icon"><i data-lucide="landmark" style="width:22px;height:22px;"></i></div>
+        <h4>Feito em Angola</h4>
+        <p>Suporte nativo ao Kwanza (KZ). Conteúdo e conselhos adaptados à realidade económica angolana. Desenvolvido por e para angolanos.</p>
+      </div>
+    </div>
+    <!-- TECH SPEC -->
+    <div class="tech-box reveal">
+      <div class="tech-item">
+        <h5>Motor de Persistência</h5>
+        <p>SQLite para armazenamento local optimizado. Rápido, leve e sem dependências externas.</p>
+      </div>
+      <div class="tech-item">
+        <h5>Arquitectura de UI</h5>
+        <p>Dynamic UI Building via código. RecyclerView com ChatAdapter para listagens dinâmicas e fluidas.</p>
+      </div>
+      <div class="tech-item">
+        <h5>Plataforma</h5>
+        <p>Android 5.0+ (API 21). Optimizado para dispositivos de gama baixa e média.</p>
+      </div>
+      <div class="tech-item">
+        <h5>Backup</h5>
+        <p>Backup automático silencioso em cada acção. Pasta persistente que sobrevive à reinstalação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sec-div">
+
+<!-- PRICING -->
+<section class="section" id="planos" style="background:var(--bg2);">
+  <div class="s-inner">
+    <div class="s-label">Planos</div>
+    <h2 class="s-title">Escolha o seu plano.</h2>
+    <p class="s-sub">Pague apenas pelo tempo que precisar. Activação via WhatsApp em minutos.</p>
+    <div class="pricing-grid">
+
+      <div class="pc reveal">
+        <div class="pc-name">Semanal</div>
+        <div class="pc-desc">Experimente tudo por 7 dias.</div>
+        <div class="pc-price">150 KZ</div>
+        <div class="pc-period">7 dias de acesso total</div>
+        <div class="pc-div"></div>
+        <ul class="pc-feats">
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Todos os gráficos</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Sire AI completa</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Exportação PDF</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Backup automático</li>
+        </ul>
+        <a href="https://wa.me/244921325366?text=Quero%20o%20plano%20Semanal%207%20dias" class="pc-btn" target="_blank">Obter via WhatsApp</a>
+      </div>
+
+      <div class="pc reveal">
+        <div class="pc-name">Quinzenal</div>
+        <div class="pc-desc">14 dias de controlo total.</div>
+        <div class="pc-price">250 KZ</div>
+        <div class="pc-period">14 dias de acesso total</div>
+        <div class="pc-div"></div>
+        <ul class="pc-feats">
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Todos os gráficos</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Sire AI completa</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Exportação PDF</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Backup automático</li>
+        </ul>
+        <a href="https://wa.me/244921325366?text=Quero%20o%20plano%20Quinzenal%2014%20dias" class="pc-btn" target="_blank">Obter via WhatsApp</a>
+      </div>
+
+      <div class="pc featured reveal">
+        <div class="pc-pop">Mais popular</div>
+        <div class="pc-name">Mensal</div>
+        <div class="pc-desc">O plano preferido da comunidade SIRE.</div>
+        <div class="pc-price">500 KZ</div>
+        <div class="pc-period">30 dias de acesso total</div>
+        <div class="pc-div"></div>
+        <ul class="pc-feats">
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Todos os gráficos</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Sire AI completa</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Simulador financeiro</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Exportação PDF</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Backup automático</li>
+        </ul>
+        <a href="https://wa.me/244921325366?text=Quero%20o%20plano%20Mensal%2030%20dias" class="pc-btn" target="_blank">Obter via WhatsApp</a>
+      </div>
+
+      <div class="pc reveal">
+        <div class="pc-name">Trimestral</div>
+        <div class="pc-desc">3 meses com desconto incluído.</div>
+        <div class="pc-price">1.200 KZ</div>
+        <div class="pc-period">90 dias de acesso total</div>
+        <div class="pc-div"></div>
+        <ul class="pc-feats">
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Tudo do Mensal</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Suporte prioritário</li>
+        </ul>
+        <a href="https://wa.me/244921325366?text=Quero%20o%20plano%20Trimestral%2090%20dias" class="pc-btn" target="_blank">Obter via WhatsApp</a>
+      </div>
+
+      <div class="pc reveal">
+        <div class="pc-name">Anual</div>
+        <div class="pc-desc">O mais económico por dia.</div>
+        <div class="pc-price">4.000 KZ</div>
+        <div class="pc-period">365 dias de acesso total</div>
+        <div class="pc-div"></div>
+        <ul class="pc-feats">
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Tudo do Mensal</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Atualizações incluídas</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Suporte prioritário</li>
+        </ul>
+        <a href="https://wa.me/244921325366?text=Quero%20o%20plano%20Anual%20365%20dias" class="pc-btn" target="_blank">Obter via WhatsApp</a>
+      </div>
+
+      <div class="pc vitalicio reveal">
+        <div class="pc-gold">Vitalício</div>
+        <div class="pc-name">Para Sempre</div>
+        <div class="pc-desc">Pague uma vez. Use eternamente.</div>
+        <div class="pc-gold-price">10.000 KZ</div>
+        <div class="pc-period">Sem renovações. Para sempre.</div>
+        <div class="pc-div" style="border-color:rgba(180,140,60,.25);"></div>
+        <ul class="pc-feats">
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Acesso a tudo</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Todas as actualizações futuras</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Suporte prioritário vitalício</li>
+          <li class="on"><i data-lucide="check" class="ck" style="width:15px;height:15px;"></i>Sem renovações</li>
+        </ul>
+        <a href="https://wa.me/244921325366?text=Quero%20o%20plano%20Vitalicio" class="pc-btn" target="_blank">Obter via WhatsApp</a>
+        <div class="pc-note">Disponível também em USD · EUR · BRL · GBP</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="sec-div">
+
+<!-- PAYMENT -->
+<section class="section" id="pagamento">
+  <div class="s-inner">
+    <div class="s-label">Pagamento</div>
+    <h2 class="s-title">Métodos de pagamento.</h2>
+    <p class="s-sub">Aceita KZ, USD, EUR e GBP. Pague pelo método mais conveniente e receba o código de activação via WhatsApp.</p>
+    <div class="pay-grid">
+      <div class="pay-card reveal">
+        <div class="pay-icon"><i data-lucide="smartphone" style="width:20px;height:20px;"></i></div>
+        <span class="pay-tag">Angola</span>
+        <h5>MCX Express</h5>
+        <p>Transferência via MCX. Envie o comprovativo via WhatsApp para +244 921 325 366</p>
+      </div>
+      <div class="pay-card reveal">
+        <div class="pay-icon"><i data-lucide="credit-card" style="width:20px;height:20px;"></i></div>
+        <span class="pay-tag">Internacional USD</span>
+        <h5>PayPal</h5>
+        <p>adilsonrafael847@gmail.com — Pagamento em USD via PayPal.Me directo.</p>
+      </div>
+      <div class="pay-card reveal">
+        <div class="pay-icon"><i data-lucide="building-2" style="width:20px;height:20px;"></i></div>
+        <span class="pay-tag">USD</span>
+        <h5>Lead Bank</h5>
+        <p>Transferência bancária USD. Beneficiário: Rafael Adilson Cambinda. Conta: 219145054433</p>
+      </div>
+      <div class="pay-card reveal">
+        <div class="pay-icon"><i data-lucide="euro" style="width:20px;height:20px;"></i></div>
+        <span class="pay-tag">EUR</span>
+        <h5>Banking Circle</h5>
+        <p>IBAN: LU364080000029248181 — Banking Circle S.A., Luxembourg. BIC: BCIRLULL</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sec-div">
+
+<!-- DOWNLOADS -->
+<section class="section" id="downloads" style="background:var(--bg2);">
+  <div class="s-inner">
+    <div class="s-label">Downloads</div>
+    <h2 class="s-title">Disponível para Android e Windows.</h2>
+    <p class="s-sub">Faça download da versão mais recente. Instalação simples, sem necessidade de conta Google.</p>
+    <div class="dl-grid">
+
+      <div class="dl-card latest reveal">
+        <div class="dl-head">
+          <div class="dl-icon droid">🤖</div>
+          <div>
+            <div class="dl-latest"><div class="dot-pulse"></div>Mais recente</div>
+            <h4>Android</h4>
+            <div class="dl-v">v4.0 — build 8</div>
+          </div>
+        </div>
+        <div class="dl-body">
+          <p>Compatível com Android 5.0+. Inclui Sire AI, Simulador Financeiro, gráficos completos, PDF e backup automático.</p>
+          <a href="https://github.com/adilson889/SIRE/releases/download/v4.0/sire_v4.0_signed.apk" class="dl-btn" target="_blank">
+            <i data-lucide="download" style="width:17px;height:17px;"></i>
+            Download APK — v4.0
+          </a>
+          <div style="margin-bottom:16px;font-size:.8rem;color:var(--muted);font-weight:500;">Versões anteriores</div>
+          <div class="dl-versions">
+            <div class="dl-ver">
+              <span class="vn">v3.0</span>
+              <span class="vd">Abr 2026</span>
+              <a href="https://github.com/adilson889/SIRE/releases/download/v3.0/sire_v3.0_signed.apk" target="_blank"><i data-lucide="download" style="width:13px;height:13px;"></i> APK</a>
+            </div>
+            <div class="dl-ver">
+              <span class="vn">v2.3</span>
+              <span class="vd">Mar 2026</span>
+              <a href="https://github.com/adilson889/SIRE/archive/refs/tags/v2.3.zip" target="_blank"><i data-lucide="download" style="width:13px;height:13px;"></i> ZIP</a>
+            </div>
+            <div class="dl-ver">
+              <span class="vn">v2.0</span>
+              <span class="vd">Fev 2026</span>
+              <a href="https://github.com/adilson889/SIRE/releases/download/v2.0/sire.apk" target="_blank"><i data-lucide="download" style="width:13px;height:13px;"></i> APK</a>
+            </div>
+            <div class="dl-ver">
+              <span class="vn">v1.0.0</span>
+              <span class="vd">Jan 2026</span>
+              <a href="https://github.com/adilson889/SIRE/releases/download/V1.0.0/signed.apk" target="_blank"><i data-lucide="download" style="width:13px;height:13px;"></i> APK</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dl-card reveal">
+        <div class="dl-head">
+          <div class="dl-icon win">🪟</div>
+          <div>
+            <h4>Windows</h4>
+            <div class="dl-v">v1.0 — Em desenvolvimento</div>
+          </div>
+        </div>
+        <div class="dl-body">
+          <p>Versão desktop para Windows 10/11. Sincronização de dados via ficheiro de backup exportado do Android.</p>
+          <a href="#" class="dl-btn ghost">
+            <i data-lucide="clock" style="width:17px;height:17px;"></i>
+            Em breve
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tabela de versões -->
+    <div style="margin-top:64px;">
+      <div class="s-label">Histórico completo</div>
+      <h3 style="font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--text);margin-bottom:8px;">Todas as versões.</h3>
+      <div class="vt reveal">
+        <div class="vt-head">
+          <span>Versão</span>
+          <span>Data</span>
+          <span>Plataforma</span>
+          <span>Download</span>
+        </div>
+        <div class="vt-row">
+          <span class="vnum">v4.0 — build 8</span>
+          <span class="vdate">Mai 2026</span>
+          <span class="vplat">Android 5.0+</span>
+          <a href="https://github.com/adilson889/SIRE/releases/download/v4.0/sire_v4.0_signed.apk" target="_blank"><i data-lucide="download" style="width:13px;height:13px;"></i> APK</a>
+        </div>
+        <div class="vt-row">
+          <span class="vnum">v3.0</span>
+          <span class="vdate">Abr 2026</span>
+          <span class="vplat">Android 5.0+</span>
+          <a href="https://github.com/adilson889/SIRE/releases/download/v3.0/sire_v3.0_signed.apk" target="_blank"><i data-lucide="download" style="width:13px;height:13px;"></i> APK</a>
+        </div>
+        <div class="vt-row">
+          <span class="vnum">v2.3</span>
+          <span class="vdate">Mar 2026</span>
+          <span class="vplat">Android 5.0+</span>
+          <a href="https://github.com/adilson889/SIRE/archive/refs/tags/v2.3.zip" target="_blank"><i data-lucide="download" style="width:13px;height:13px;"></i> ZIP</a>
+        </div>
+        <div class="vt-row">
+          <span class="vnum">v2.0</span>
+          <span class="vdate">Fev 2026</span>
+          <span class="vplat">Android 5.0+</span>
+          <a href="https://github.com/adilson889/SIRE/releases/download/v2.0/sire.apk" target="_blank"><i data-lucide="download" style="width:13px;height:13px;"></i> APK</a>
+        </div>
+        <div class="vt-row">
+          <span class="vnum">v1.0.0</span>
+          <span class="vdate">Jan 2026</span>
+          <span class="vplat">Android 5.0+</span>
+          <a href="https://github.com/adilson889/SIRE/releases/download/V1.0.0/signed.apk" target="_blank"><i data-lucide="download" style="width:13px;height:13px;"></i> APK</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="sec-div">
+
+<!-- COMMUNITY -->
+<section class="section" id="comunidade">
+  <div class="s-inner">
+    <div class="s-label">Comunidade</div>
+    <h2 class="s-title">Faça parte da família SIRE.</h2>
+    <p class="s-sub">Grupo exclusivo no WhatsApp para utilizadores SIRE. Novidades, dicas financeiras e suporte directo.</p>
+    <div class="comm-box">
+      <div class="comm-left">
+        <h3>Grupo da Comunidade SIRE</h3>
+        <p>Receba notificações de novas versões, dicas financeiras exclusivas e fale directamente com o desenvolvedor. Comunidade activa e crescente em Angola.</p>
+      </div>
+      <a href="https://chat.whatsapp.com/LK3b5LlGF3Y2N6XaNWNmKq" class="comm-btn" target="_blank">
+        <i data-lucide="message-circle" style="width:20px;height:20px;"></i>
+        Entrar no grupo
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="sec-div">
+
+<!-- PARTNERS -->
+<section class="section" id="parcerias" style="background:var(--bg2);">
+  <div class="s-inner">
+    <div class="s-label">Parcerias</div>
+    <h2 class="s-title">Parceiros e integrações.</h2>
+    <p class="s-sub">O SIRE integra os principais serviços de pagamento disponíveis em Angola e internacionalmente.</p>
+    <div class="part-grid">
+      <div class="part-pill reveal">
+        <div class="part-icon"><i data-lucide="smartphone" style="width:17px;height:17px;"></i></div>
+        <div><div class="part-name">MCX Express</div><div class="part-type">Pagamentos Angola</div></div>
+      </div>
+      <div class="part-pill reveal">
+        <div class="part-icon"><i data-lucide="credit-card" style="width:17px;height:17px;"></i></div>
+        <div><div class="part-name">PayPal</div><div class="part-type">Pagamentos Internacionais USD</div></div>
+      </div>
+      <div class="part-pill reveal">
+        <div class="part-icon"><i data-lucide="building-2" style="width:17px;height:17px;"></i></div>
+        <div><div class="part-name">Lead Bank</div><div class="part-type">Transferências USD</div></div>
+      </div>
+      <div class="part-pill reveal">
+        <div class="part-icon"><i data-lucide="euro" style="width:17px;height:17px;"></i></div>
+        <div><div class="part-name">Banking Circle</div><div class="part-type">Transferências EUR</div></div>
+      </div>
+      <div class="part-pill reveal">
+        <div class="part-icon"><i data-lucide="message-circle" style="width:17px;height:17px;"></i></div>
+        <div><div class="part-name">WhatsApp</div><div class="part-type">Suporte e Activação</div></div>
+      </div>
+      <div class="part-pill reveal">
+        <div class="part-icon"><i data-lucide="github" style="width:17px;height:17px;"></i></div>
+        <div><div class="part-name">GitHub</div><div class="part-type">Distribuição APK</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <div class="cta-box">
+    <h2>O seu dinheiro merece inteligência.</h2>
+    <p>Junte-se aos utilizadores que já controlam as suas finanças com a SIRE. Download gratuito, activação simples via WhatsApp.</p>
+    <div class="cta-btns">
+      <a href="https://github.com/adilson889/SIRE/releases/download/v4.0/sire_v4.0_signed.apk" class="cta-btn-w" target="_blank">
+        <i data-lucide="download" style="width:18px;height:18px;"></i>
+        Download Agora
+      </a>
+      <a href="https://wa.me/244921325366" class="cta-btn-o" target="_blank">
+        <i data-lucide="message-circle" style="width:18px;height:18px;"></i>
+        Activar via WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <svg width="32" height="32" viewBox="0 0 38 38">
+        <circle cx="19" cy="19" r="19" fill="#8B0000"/>
+        <text x="19" y="26" text-anchor="middle" fill="white" font-family="Cormorant Garamond,serif" font-size="17" font-weight="700">S</text>
+      </svg>
+      <span class="foot-brand-name">SIRE</span>
+    </div>
+    <div class="foot-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#funcionalidades">Funcionalidades</a>
+      <a href="#planos">Planos</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#comunidade">Comunidade</a>
+      <a href="https://wa.me/244921325366" target="_blank">Suporte</a>
+    </div>
+    <div class="foot-copy">© 2026 SIRE Technologies · Feito em Angola 🇦🇴</div>
+  </div>
+</footer>
+
+<script>
+lucide.createIcons();
+
+// NAV scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Mobile menu
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// CAROUSEL
+const slides = document.getElementById('cSlides');
+const dotsWrap = document.getElementById('cDots');
+const total = 4;
+let cur = 0, timer;
+
+function goTo(n){
+  cur = (n + total) % total;
+  slides.style.transform = `translateX(-${cur * 100}%)`;
+  dotsWrap.querySelectorAll('.c-dot').forEach((d,i)=> d.classList.toggle('on', i===cur));
+}
+
+for(let i=0;i<total;i++){
+  const d = document.createElement('div');
+  d.className = 'c-dot' + (i===0?' on':'');
+  d.onclick = ()=>{ clearInterval(timer); goTo(i); startTimer(); };
+  dotsWrap.appendChild(d);
+}
+
+document.getElementById('cPrev').onclick = ()=>{ clearInterval(timer); goTo(cur-1); startTimer(); };
+document.getElementById('cNext').onclick = ()=>{ clearInterval(timer); goTo(cur+1); startTimer(); };
+
+function startTimer(){ timer = setInterval(()=> goTo(cur+1), 5000); }
+startTimer();
+
+// REVEAL on scroll
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=> obs.observe(el));
+</script>
+</body>
+</html>
